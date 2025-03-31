@@ -20,13 +20,13 @@ $(document).ready(function () {
     });
 
     // Add keyboard navigation for flipping pages
-    $(document).keydown(function (e) {
-        if (e.key === 'ArrowLeft') {
-            flipbook.turn('previous');
-        } else if (e.key === 'ArrowRight') {
-            flipbook.turn('next');
-        }
-    });
+   $(document).on('keydown', function (e) {
+    if (e.key === 'ArrowLeft') {
+        $('#flipbook').turn('previous');
+    } else if (e.key === 'ArrowRight') {
+        $('#flipbook').turn('next');
+    }
+});
 
     // Dynamically resize the flipbook
     $(window).resize(resizeFlipbook);

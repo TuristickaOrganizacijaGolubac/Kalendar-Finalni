@@ -3,8 +3,8 @@ $(document).ready(function () {
 
     // Function to resize the flipbook
     const resizeFlipbook = () => {
-        const viewportWidth = $(window).width(); // 80% of viewport width
-        const viewportHeight = $(window).height(); // 80% of viewport height
+        const viewportWidth = $(window).width(); // 100% width
+        const viewportHeight = $(window).height(); // 100% height
         const size = Math.min(viewportWidth, viewportHeight); // Keep it square
 
         flipbook.turn('size', size, size); // Update dimensions
@@ -12,8 +12,8 @@ $(document).ready(function () {
 
     // Initialize the flipbook
     flipbook.turn({
-        width: $(window).width(), // Start with 80% width
-        height: $(window).height(), // Start with 80% height
+        width: $(window).width(),
+        height: $(window).height(),
         autoCenter: true,
         gradients: true,
         acceleration: true,
@@ -21,9 +21,18 @@ $(document).ready(function () {
         display: 'single' // Single-page view
     });
 
+    // Add event listener for keyboard navigation
+    $(document).keydown(function (e) {
+        if (e.key === "ArrowLeft") {
+            flipbook.turn("previous"); // Turn to the previous page
+        } else if (e.key === "ArrowRight") {
+            flipbook.turn("next"); // Turn to the next page
+        }
+    });
+
     // Resize the flipbook dynamically
     $(window).resize(resizeFlipbook);
 
-    // Perform initial resizing when the page loads
+    // Perform initial resizing
     resizeFlipbook();
 });
